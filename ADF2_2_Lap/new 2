@@ -1,0 +1,71 @@
+package ADF2_Assignment_1;
+import java.util.*;
+
+public class BookManegement {
+//	Scanner in = new Scanner(System.in);
+	public static void main(String[] args) {
+		List<Book> list = new ArrayList<>();
+		String lsbn;
+		Scanner src = new Scanner(System.in);
+		Nhap();
+		Test();
+	}
+	
+	private static void Test() {
+		List<Book> list = Arrays.asList(
+						new Book("S01","a",120,7,10),
+						new Book("S03","b",100,17,10),
+						new Book("S04","c",110,11,10),
+						new Book("S05","d",200,20,10)
+				);
+	
+}
+
+	private static void Nhap() {
+		List<Book> list = new ArrayList<>();
+		Scanner in = new Scanner(System.in);
+		
+		System.out.println("lsbn: ");
+		String lsbn = in.nextLine();
+		kiemtraloi(list, lsbn);
+		
+		System.out.println("Name: ");
+		String name = in.nextLine();
+		
+		System.out.println("Price: ");
+		float price = Float.parseFloat(in.nextLine());
+		
+		System.out.println("Discount: ");
+		int discount = Integer.parseInt(in.nextLine());
+		
+		System.out.println("Like: ");
+		int like = Integer.parseInt(in.nextLine());
+		
+		
+		list.add(new Book(lsbn, name, price, discount, like));
+		
+	}
+
+	private static String  kiemtraloi(List<Book> list) {
+		Scanner in = new Scanner(System.in);	
+		
+		System.out.println("lsbn: ");
+		String lsbn = in.nextLine();
+		
+		long count= list.stream().filter(a -> a.getLsbn().equals(lsbn)).count();
+		
+		while(true)
+		{
+			if(count > 0) {
+				return lsbn;
+				
+			}else {
+				System.out.println("Nhap sai, moi nhap lai!");
+				System.out.println("lsbn: ");
+				lsbn = in.nextLine();
+			}
+		}
+		
+	}
+	
+}
